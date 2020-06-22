@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block titulo %}b00k{% endblock %}
+
+{% block topo %}
+    <div class="container-fluid" id="top">
+        <h1>b00k</h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" >
+        <h2>{{ headline }}</h2>
+        <br>
+       <div class="list-group">
+        {% for book in livros %}
+            <a href="/pageBook/{{ book.id }}" class="list-group-item d-flex justify-content-between align-items-center list-group-item list-group-item-action">{{ book.title }} 
+                    <span class="badge badge-primary badge-pill">{{ book.qtd }}</span> </a>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

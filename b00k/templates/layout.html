@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block titulo %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    {% block topo %}{% endblock%}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{url_for('index')}}">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            {% if logado == False %}
+                <a href="{{url_for('login')}}" ><button class="btn btn-success btnComMargem">Login</button></a>
+                <a href="{{url_for('cadastro')}}"><button class="btn btn-info btnComMargem">Cadastro</button></a>
+            {% else %}
+                <form action="{{url_for('logout')}}" method="post" ><button class="btn btn-warning">Log out</button></form>
+            {% endif %}
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="{{url_for('pesquisa')}}" method="post">
+          <input class="form-control mr-sm-2" type="search" name="filtro" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+	{% block body %}{% endblock %}
+</body>
+</html>

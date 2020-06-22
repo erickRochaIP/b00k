@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block titulo %}Log in{% endblock %}
+{% block topo %}
+	<div class="container-fluid" id="top">
+        <h1>{{ headline }}</h1>    
+    </div>
+{% endblock %}
+
+{% block body %}
+	
+    <div class="container-fluid" >
+    	<form action="{{url_for('logar')}}" method="post" id="formLogin">
+    			<input type="text" name="nomeusuario" placeholder="Nome de Usuario">
+    			<input type="password" name="senha" placeholder="Senha">
+    		<button  class="btn btn-primary">Login</button>
+    		
+    	</form>
+    	<div class="botaoLogin">
+        		<a href="{{url_for('cadastro')}}"><button class="btn btn-info btn-lg">Cadastro</button></a>
+    	</div>
+    </div>
+{% endblock %}

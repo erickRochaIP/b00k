@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block titulo %}Pesquisa{% endblock %}
+
+{% block topo %}
+    <div class="container-fluid" id="top">
+        <h1>Pesquisa</h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" >
+        <h2>{{ headline }}</h2>
+        <br>
+        {% if livros ==  'erro' %}
+
+        <p>Pesquisa não retornou resultados</p>
+          
+        {% else %}
+        <div class="list-group">
+          {% for book in livros %}
+            <a href="/pageBook/{{ book.id }}" class="list-group-item d-flex justify-content-between align-items-center list-group-item list-group-item-action">{{ book.title }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

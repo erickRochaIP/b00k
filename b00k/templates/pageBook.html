@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block titulo %}{{ dados.title }}{% endblock %}
+{% block topo %}
+	<div class="container-fluid" id="top">
+        <h1>{{ dados.title }}</h1>  
+    </div>
+{% endblock %}
+{% block body %}
+<div class="row">
+	<div class="col-sm">
+		<div class="overflow-auto">
+			<h3>Resenhas: </h3>
+			<br>
+	    	{% for resenha in reviews %}
+	    	<div class="border">
+	    		<span class="badge badge-primary badge-pill" style="float: right; top: 3%; margin: 2px">{{ resenha.nota }}</span>
+	    		<h6> {{ resenha.nomeusuario }}</h6>
+	    		
+	    		<p>{{ resenha.resenha }}</p>
+	    	</div>
+	    	{% endfor %}
+    	</div>
+	</div>
+
+	<div class="col-sm">
+		<div class="container-fluid">
+			<h3>Dados do Livro: </h3>
+			<br>
+			<div class="border">
+				<p>ISBN: {{ dados.isbn }}</p>
+				<p>Titulo: {{ dados.title }} </p>
+				<p>Autor: {{ dados.author }}</p>
+				<p>Ano de Lançamento: {{ dados.year }}</p>
+				<p>Media da nota(Goodreads): {{ avg }}</p>
+			</div>
+		</div>
+		{% if poderesenhar == True %}
+			<div class="form-group">
+				<form  action="{{ url_for('pageBook', id = dados.id) }}" method="post">
+					<label for="exampleFormControlTextarea1">Escreva sua resenha: </label>
+			    	<textarea class="form-control" id="exampleFormControlTextarea1" name="resenha" rows="3"></textarea>
+			    	<p>Nota
+			    	<select id="notas" name="nota">
+					  <option class="dropdown-item" value="1">1</option>
+					  <option class="dropdown-item" value="2">2</option>
+					  <option class="dropdown-item" value="3">3</option>
+					  <option class="dropdown-item" value="4">4</option>
+					  <option class="dropdown-item" value="5">5</option>
+					</select></p>
+					<button style="float: right" class="btn btn-primary">Enviar</button>
+				</form>
+		    </div>
+		{% else %}
+			<h3>Você ja enviou uma resenha. </h3>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}
+

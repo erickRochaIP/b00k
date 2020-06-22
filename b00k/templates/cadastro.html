@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block titulo %}Log in{% endblock %}
+{% block topo %}
+    <div class="container-fluid" id="top">
+        <h1>{{ headline }}</h1>    
+    </div>
+{% endblock %}
+{% block body %}
+	
+    <div class="container-fluid" >
+    	<form action="{{url_for('cadastrar')}}" method="post" id="formCadastro">
+    			<input type="text" name="nomeusuario" placeholder="Nome de Usuario">
+    			<input type="password" name="senha" placeholder="Senha">
+                <input type="password" name="senhaConfirma" placeholder="Confirme a senha">
+    		<button  class="btn btn-primary">Cadastrar</button>
+    	</form>
+    </div>
+    {% if message != "" %}
+    <div class="alert alert-primary" role="alert">
+        {{message}}
+    </div>
+    {% endif %}
+{% endblock %}
